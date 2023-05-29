@@ -6,7 +6,7 @@ login = False
 n = 0
 num = int
 nume = 3
-pedro = ''
+pedro = 'pedro'
 
 while(num != 2):
     print("1 - Cadastro | 2 - Login")
