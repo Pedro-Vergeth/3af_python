@@ -1,6 +1,4 @@
-def cadastro():
-    global pessoa
-    global lista
+def cadastro(pessoa, lista):
     pessoa['nome'] = str(input("digite seu nome: "))
     pessoa['sobrenome'] = str(input("digite seu sobrenome: "))
     pessoa['idade'] = int(input("digite sua idade: "))
@@ -9,16 +7,11 @@ def cadastro():
     pessoa['email'] = str(input("Crie um Email: "))
     pessoa['senha'] = str(input("Crie uma senha: "))
     lista.append(pessoa.copy())
+    return(lista)
     
 
-def loginn():
-    global emailc
-    global senhac
-    global lista
-    global pessoa
-    global n
-    global loginre
-    reg = False
+def loginn(emailc, senhac, lista, pessoa, n, loginre, pedro1):
+    
     i = 0
     loginre = 0
     for i in range(len(lista)):
@@ -27,18 +20,14 @@ def loginn():
             n = i
         else:
             i = i + 1
-    return(loginre)
+    return(loginre, n)
 
-def Exibir():
-    global lista
-    global pessoa
-    global n
+def Exibir(lista, n):
+    
     print(lista[n])
 
-def Editar():
-    global lista
-    global pessoa
-    global n
+def Editar(lista, n):
+    
     print("Nome | Sobrenome | Idade | Profissão | CPF | Email | Senha")
     opca = str(input("O que você quer editar:"))
     if opca == 'Nome':
@@ -64,11 +53,10 @@ def Editar():
         lista[n]['senha'] = senhanv
     else:
         print("erro")
+    return(lista)
 
 def Excluir():
-    global lista
-    global pessoa
-    global n
+    
     print("Nome | Sobrenome | Idade | Profissão | CPF | Email | Senha")
     opco = str(input("O que você quer editar:"))
     if opco == 'Nome':
@@ -87,3 +75,4 @@ def Excluir():
         lista[n]['senha'] = ''
     else:
         print("erro")
+    return(lista)
