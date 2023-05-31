@@ -1,4 +1,4 @@
-from funcoes import cadastro, loginn, Exibir, Editar, Excluir
+from funcoes import cadastro, Exibir, Editar, Excluir
 
 opc = 0
 loginre = 0
@@ -29,9 +29,14 @@ while(loginre != 3):
     print (f'Você tem {nume} tentativas ')
     emailc = str(input("Digite seu Email: "))
     senhac= str(input("Digite sua senha: "))
-    loginn(emailc, senhac, lista, pessoa, n, loginre,pedro1)
-    print(loginre)
-    print(n)
+    for i in range(len(lista)):
+        if(lista[i]['email'] == emailc and lista[i]['senha'] == senhac):
+            loginre = 3
+            n = i
+        else:
+            i = i + 1
+    
+    
     if (loginre == 3):
         print("login realizado com sucesso")
     elif(nume == 0):

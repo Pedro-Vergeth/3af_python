@@ -10,18 +10,6 @@ def cadastro(pessoa, lista):
     return(lista)
     
 
-def loginn(emailc, senhac, lista, pessoa, n, loginre, pedro1):
-    
-    i = 0
-    loginre = 0
-    for i in range(len(lista)):
-        if(lista[i]['email'] == emailc and lista[i]['senha'] == senhac):
-            loginre = 3
-            n = i
-        else:
-            i = i + 1
-    return(loginre, n)
-
 def Exibir(lista, n):
     
     print(lista[n])
