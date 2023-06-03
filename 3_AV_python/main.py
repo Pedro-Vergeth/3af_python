@@ -1,4 +1,8 @@
-from funcoes import cadastro, Exibir, Editar, Excluir
+from funcoes import cadastro, Exibir, Editar, Excluir, loginn, lercadas
+import sqlite3
+
+conn = sqlite3.connect('3af')
+c = conn.cursor
 
 opc = 0
 loginre = 0
@@ -8,14 +12,18 @@ login = False
 n = 0
 num = int
 nume = 3
-pedro1 = 0
+numcadas = 0
+
 
 while(num != 2):
+    cadastrados = lercadas(conn)   
+    numcadas = len(cadastrados)
+    print(numcadas)
+
     print("1 - Cadastro | 2 - Login")
     num = int(input("digite um número: "))
     if(num == 1):
-        cadastro(pessoa, lista)
-        print(lista)
+        cadastro(conn)
         continue
         
     elif(num == 2):
@@ -29,14 +37,7 @@ while(loginre != 3):
     print (f'Você tem {nume} tentativas ')
     emailc = str(input("Digite seu Email: "))
     senhac= str(input("Digite sua senha: "))
-    for i in range(len(lista)):
-        if(lista[i]['email'] == emailc and lista[i]['senha'] == senhac):
-            loginre = 3
-            n = i
-        else:
-            i = i + 1
-    
-    
+    loginn()
     if (loginre == 3):
         print("login realizado com sucesso")
     elif(nume == 0):

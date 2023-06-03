@@ -1,14 +1,36 @@
-def cadastro(pessoa, lista):
-    pessoa['nome'] = str(input("digite seu nome: "))
-    pessoa['sobrenome'] = str(input("digite seu sobrenome: "))
-    pessoa['idade'] = int(input("digite sua idade: "))
-    pessoa['profissão'] = str(input("digite sua profissão: "))
-    pessoa['CPF'] = int(input("digite seu CPF: "))
-    pessoa['email'] = str(input("Crie um Email: "))
-    pessoa['senha'] = str(input("Crie uma senha: "))
-    lista.append(pessoa.copy())
-    return(lista)
+def lercadas(conn):
+    cursor = conn.cursor()
+    sql = 'select * from trabalhadores'
+    cursor.execute(sql)
+    return cursor.fetchall()
     
+    
+
+def cadastro(conn):
+    nomen = str(input("digite seu nome: "))
+    sobrenomen = str(input("digite seu sobrenome: "))
+    idaden= int(input("digite sua idade: "))
+    profissaon= str(input("digite sua profissão: "))
+    CPFN= int(input("digite seu CPF: "))
+    emailn= str(input("Crie um Email: "))
+    senhan = str(input("Crie uma senha: "))
+
+    cursor = conn.cursor()
+    sql = 'INSERT INTO trabalhadores(nome, sobrenome, idade, CPF, profissão, email, senha) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    cursor.execute(sql, [nomen, sobrenomen, idaden, CPFN, profissaon, emailn, senhan])
+    conn.commit()
+    print("Cadastro realizado")
+    
+    return
+
+def loginn():
+    for i in range(len(lista)):
+        if(lista[i]['email'] == emailc and lista[i]['senha'] == senhac):
+            loginre = 3
+            n = i
+        else:
+            i = i + 1
+
 
 def Exibir(lista, n):
     
