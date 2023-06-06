@@ -1,25 +1,22 @@
-from funcoes import cadastro, Exibir, Editar, Excluir, loginn, lercadas
+from funcoes import cadastro, Exibir, Editar, Excluir, loginn2, lercadas, buscarnome
 import sqlite3
+import os
 
+loginre = 0
 conn = sqlite3.connect('3af')
 c = conn.cursor
-
 opc = 0
-loginre = 0
 lista = list()
 pessoa = dict()
 login = False
 n = 0
 num = int
 nume = 3
-numcadas = 0
+i = 0
+p = 0
 
 
 while(num != 2):
-    cadastrados = lercadas(conn)   
-    numcadas = len(cadastrados)
-    print(numcadas)
-
     print("1 - Cadastro | 2 - Login")
     num = int(input("digite um número: "))
     if(num == 1):
@@ -34,10 +31,25 @@ while(num != 2):
 
 
 while(loginre != 3):
+    i = 0
     print (f'Você tem {nume} tentativas ')
     emailc = str(input("Digite seu Email: "))
     senhac= str(input("Digite sua senha: "))
-    loginn()
+    
+    cadastrado = lercadas(conn)   
+    usuario = loginn2(conn)
+    numcadas = len(cadastrado)
+    
+    
+    for i in cadastrado:
+        if usuario[p][0] == emailc and usuario[p][1] == senhac:
+            n = p
+            loginre = 3
+            
+        else:
+            p = p + 1
+    
+    
     if (loginre == 3):
         print("login realizado com sucesso")
     elif(nume == 0):
@@ -46,20 +58,23 @@ while(loginre != 3):
     else:
         print ("erro")
         nume = nume - 1
-    
 
+nomebc = buscarnome(conn, n)
 
+os.system("cls")
 
 while (opc != 4):
-    print("olá {} {}".format(lista[n]['nome'], lista[n]['sobrenome']))
+    print("olá {} {}".format(nomebc[n][0], nomebc[n][1]))
     print("1 - Exibir | 2 - Editar | 3 - Excluir | 4 - Sair")
-    opc = int(input("digite um numero"))
+    opc = int(input("digite um numero: "))
     if opc == 1:
-        Exibir(lista, n)
+        exibirdados = Exibir(conn, n)
+        print(exibirdados)
+        os.system("pause")
     elif opc == 2:
-        Editar(lista, n)
+        Editar(conn, n)
     elif opc == 3:
-        Excluir(lista, n)
+        Excluir(conn, n)
     elif opc == 4:
         print("Tenha um ótimo dia!")
         break

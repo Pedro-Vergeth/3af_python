@@ -23,47 +23,62 @@ def cadastro(conn):
     
     return
 
-def loginn():
-    for i in range(len(lista)):
-        if(lista[i]['email'] == emailc and lista[i]['senha'] == senhac):
-            loginre = 3
-            n = i
-        else:
-            i = i + 1
+def loginn2(conn):
+        cursor = conn.cursor()
+        sql = 'select email, senha from trabalhadores'
+        cursor.execute(sql)
+        return cursor.fetchall()
+
+def buscarnome(conn, p):
+    p = p + 1
+    print(p)
+    cursor = conn.cursor()
+    sql = 'select nome, sobrenome from trabalhadores where trabalhador_id = ?'
+    cursor.execute(sql, [p])
+    return cursor.fetchall()
+    
+    
 
 
-def Exibir(lista, n):
+def Exibir(conn, n):
+    n = n + 1
+    cursor = conn.cursor()
+    sql ='select * from trabalhadores where trabalhador_id = ?'
+    cursor.execute(sql, [n])
+    return cursor.fetchall()
     
     print(lista[n])
 
-def Editar(lista, n):
+def Editar(conn, n):
     
-    print("Nome | Sobrenome | Idade | Profissão | CPF | Email | Senha")
-    opca = str(input("O que você quer editar:"))
-    if opca == 'Nome':
+    cursor = conn.cursor()
+
+    print("1 - Nome | 2 - Sobrenome | 3 - Idade | 4 - Profissão | 5 - CPF | 6 - Email | 7 - Senha")
+    opca = int(input("O que você quer editar:"))
+    if opca == 1:
         Nomen = str(input("Digite o novo nome:"))
         lista[n]['Nome'] = Nomen
-    elif opca == 'Sobrenome':
+    elif opca == 2:
         sobrn = str(input("Digite seu novo sobrenome: "))
         lista[n]['sobrenome'] = sobrn
-    elif opca == 'Idade':
+    elif opca == 3:
         idaden = str(input("Digite a nova idade: "))
         lista[n]['idade'] = idaden
-    elif opca == 'Profissão':
+    elif opca == 4:
         profn = str(input("Digite sua nova profissão: "))
         lista[n]['profissão'] = profn
-    elif opca == 'CPF':
+    elif opca == 5:
         cpfn = str(input("Digite o novo CPF: "))
         lista[n]['CPF'] = cpfn
-    elif opca == 'Email':
+    elif opca == 6:
         Emailnv = str(input("Digite seu novo email: "))
         lista[n]['email'] = Emailnv
-    elif opca == 'Senha':
+    elif opca == 7:
         senhanv = str(input("Digite sua nova senha: "))
         lista[n]['senha'] = senhanv
     else:
         print("erro")
-    return(lista)
+    return
 
 def Excluir():
     
