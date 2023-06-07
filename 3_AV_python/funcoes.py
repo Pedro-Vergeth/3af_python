@@ -1,3 +1,5 @@
+
+
 def lercadas(conn):
     cursor = conn.cursor()
     sql = 'select * from trabalhadores'
@@ -50,35 +52,58 @@ def Exibir(conn, n):
     print(lista[n])
 
 def Editar(conn, n):
-    
+    n = n + 1
     cursor = conn.cursor()
 
     print("1 - Nome | 2 - Sobrenome | 3 - Idade | 4 - Profissão | 5 - CPF | 6 - Email | 7 - Senha")
-    opca = int(input("O que você quer editar:"))
+    opca = int(input("O que você quer editar: "))
     if opca == 1:
-        Nomen = str(input("Digite o novo nome:"))
-        lista[n]['Nome'] = Nomen
+        Nomen = str(input("Digite o novo nome: "))
+        sql = 'UPDATE Trabalhadores SET Nome = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [Nomen, n])
+        conn.commit()
+        
     elif opca == 2:
         sobrn = str(input("Digite seu novo sobrenome: "))
-        lista[n]['sobrenome'] = sobrn
+        sql = 'UPDATE Trabalhadores SET Sobrenome = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [sobrn, n])
+        conn.commit()
+        
     elif opca == 3:
         idaden = str(input("Digite a nova idade: "))
-        lista[n]['idade'] = idaden
+        sql = 'UPDATE Trabalhadores SET Idade = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [idaden, n])
+        conn.commit()
+        
     elif opca == 4:
         profn = str(input("Digite sua nova profissão: "))
-        lista[n]['profissão'] = profn
+        sql = 'UPDATE Trabalhadores SET Profissão = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [profn, n])
+        conn.commit()
+        
     elif opca == 5:
         cpfn = str(input("Digite o novo CPF: "))
-        lista[n]['CPF'] = cpfn
+        sql = 'UPDATE Trabalhadores SET CPF = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [cpfn, n])
+        conn.commit()
+        
     elif opca == 6:
         Emailnv = str(input("Digite seu novo email: "))
-        lista[n]['email'] = Emailnv
+        sql = 'UPDATE Trabalhadores SET Email = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [Emailnv, n])
+        conn.commit()
+        
     elif opca == 7:
         senhanv = str(input("Digite sua nova senha: "))
-        lista[n]['senha'] = senhanv
+        sql = 'UPDATE Trabalhadores SET Senha = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [senhanv, n])
+        conn.commit()
+        
     else:
         print("erro")
-    return
+    
+    
+    return 
 
 def Excluir():
     
@@ -100,4 +125,4 @@ def Excluir():
         lista[n]['senha'] = ''
     else:
         print("erro")
-    return(lista)
+    return

@@ -1,9 +1,20 @@
 import sqlite3
-
 conn = sqlite3.connect('3af')
 c = conn.cursor()
 
-sql = "UPDATE Trabalhadores SET Nome = 'iza' where Trabalhador_id = 2"
-c.execute(sql)
+def lercadas(conn):
+    cursor = conn.cursor()
+    sql = 'select * from trabalhadores'
+    cursor.execute(sql)
+    return cursor.fetchall()
 
-c.fetchall()
+
+nomes = lercadas(conn)
+
+n = 0
+
+for i in nomes:
+    print(nomes[n])
+    n = n + 1
+
+

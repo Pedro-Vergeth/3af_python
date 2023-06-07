@@ -38,33 +38,40 @@ while(loginre != 3):
     
     cadastrado = lercadas(conn)   
     usuario = loginn2(conn)
-    numcadas = len(cadastrado)
+    print(usuario)
     
     
+    p = 0
     for i in cadastrado:
+
         if usuario[p][0] == emailc and usuario[p][1] == senhac:
             n = p
             loginre = 3
             
         else:
             p = p + 1
-    
-    
     if (loginre == 3):
         print("login realizado com sucesso")
     elif(nume == 0):
         print("Bloqueado")
-        break    
+        break
     else:
         print ("erro")
         nume = nume - 1
+        print(nume)
+        
+
+
+
 
 nomebc = buscarnome(conn, n)
 
-os.system("cls")
+
+print("olá {} {}".format(nomebc[n][0], nomebc[n][1]))
+
 
 while (opc != 4):
-    print("olá {} {}".format(nomebc[n][0], nomebc[n][1]))
+    
     print("1 - Exibir | 2 - Editar | 3 - Excluir | 4 - Sair")
     opc = int(input("digite um numero: "))
     if opc == 1:
