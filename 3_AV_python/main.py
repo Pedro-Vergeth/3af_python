@@ -29,18 +29,20 @@ while(num != 2):
         print("erro")
         continue
 
+os.system("cls")
 
 while(loginre != 3):
     i = 0
     print (f'Você tem {nume} tentativas ')
     emailc = str(input("Digite seu Email: "))
     senhac= str(input("Digite sua senha: "))
+    os.system("cls")
     
     cadastrado = lercadas(conn)   
     usuario = loginn2(conn)
-    print(usuario)
     
     
+   
     p = 0
     for i in cadastrado:
 
@@ -50,38 +52,43 @@ while(loginre != 3):
             
         else:
             p = p + 1
-    if (loginre == 3):
-        print("login realizado com sucesso")
-    elif(nume == 0):
-        print("Bloqueado")
+    
+    if nume == 1:
         break
+    elif loginre == 3:
+        print("login realizado com sucesso")
     else:
         print ("erro")
         nume = nume - 1
-        print(nume)
         
-
-
-
-
+        
 nomebc = buscarnome(conn, n)
 
-
-print("olá {} {}".format(nomebc[n][0], nomebc[n][1]))
 
 
 while (opc != 4):
     
-    print("1 - Exibir | 2 - Editar | 3 - Excluir | 4 - Sair")
-    opc = int(input("digite um numero: "))
-    if opc == 1:
-        exibirdados = Exibir(conn, n)
-        print(exibirdados)
-        os.system("pause")
-    elif opc == 2:
-        Editar(conn, n)
-    elif opc == 3:
-        Excluir(conn, n)
-    elif opc == 4:
-        print("Tenha um ótimo dia!")
+    if nume == 1:
+        print("bloqueado")
         break
+    else:
+        os.system("cls")
+        print("olá {} {}".format(nomebc[0][0], nomebc[0][1]))
+        print("1 - Exibir | 2 - Editar | 3 - Excluir | 4 - Sair")
+        opc = int(input("digite um numero: "))
+        os.system("cls")
+        if opc == 1:
+            exibirdados = Exibir(conn, n)
+            print(exibirdados)
+            os.system("pause")
+        elif opc == 2:
+            Editar(conn, n)
+            print("Editado com sucesso")
+            os.system("pause")
+        elif opc == 3:
+            Excluir(conn, n)
+            print("Excluido com sucesso")
+            os.system("pause")
+        elif opc == 4:
+            print("Tenha um ótimo dia!")
+            break

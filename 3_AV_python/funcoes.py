@@ -105,24 +105,47 @@ def Editar(conn, n):
     
     return 
 
-def Excluir():
-    
-    print("Nome | Sobrenome | Idade | Profissão | CPF | Email | Senha")
-    opco = str(input("O que você quer editar:"))
-    if opco == 'Nome':
-        lista[n]['Nome'] = ''
-    elif opco == 'Sobrenome':
-        lista[n]['sobrenome'] = ''
-    elif opco == 'Idade':
-        lista[n]['idade'] = ''
-    elif opco == 'Profissão':
-        lista[n]['profissão'] = ''
-    elif opco == 'CPF':
-        lista[n]['CPF'] = ''
-    elif opco == 'Email':
-        lista[n]['email'] = ''
-    elif opco == 'Senha':
-        lista[n]['senha'] = ''
+def Excluir(conn, n):
+    n = n + 1
+    cursor = conn.cursor()
+    print("1 - Nome | 2 - Sobrenome | 3 - Idade | 4 - Profissão | 5 - CPF | 6 - Email | 7 - Senha")
+    opco = int(input("O que você quer editar:"))
+    if opco == 1:
+        nomen = ''
+        sql = 'UPDATE Trabalhadores SET Nome = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [nomen, n])
+        conn.commit()
+
+    elif opco == 2:
+        sobrn = ''
+        sql = 'UPDATE Trabalhadores SET Sobrenome = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [sobrn, n])
+        conn.commit()
+    elif opco == 3:
+        idaden = ''
+        sql = 'UPDATE Trabalhadores SET Idade = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [idaden, n])
+        conn.commit()
+    elif opco == 4:
+        profn = ''
+        sql = 'UPDATE Trabalhadores SET Profissão = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [profn, n])
+        conn.commit()
+    elif opco == 5:
+        cpfn = ''
+        sql = 'UPDATE Trabalhadores SET CPF = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [cpfn, n])
+        conn.commit()
+    elif opco == 6:
+        emailn = ''
+        sql = 'UPDATE Trabalhadores SET Email = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [emailn, n])
+        conn.commit()
+    elif opco == 7:
+        senhan = ''
+        sql = 'UPDATE Trabalhadores SET Senha = ? WHERE Trabalhador_id = ?;'
+        cursor.execute(sql, [senhan, n])
+        conn.commit()
     else:
         print("erro")
     return
